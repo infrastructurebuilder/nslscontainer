@@ -23,6 +23,7 @@ EXPORTS
 COPY tool-versions ${HOME}/.tool-versions
 COPY config ${HOME}/.aws/config
 COPY sg_setup.sh ${HOME}/.local/bin/sg_setup.sh
+RUN chmod +x ${HOME}/.local/bin/sg_setup.sh
 RUN dos2unix ${HOME}/.aws/config ${HOME}/.bashrc ${HOME}/.tool-versions ${HOME}/.local/bin/sg_setup.sh
 
 RUN <<ASDF
