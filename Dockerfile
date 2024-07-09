@@ -17,10 +17,12 @@ RUN pipx install poetry
 # ASDF
 COPY tool-versions ${HOME}/.tool-versions
 
-RUN <<ASDF
+RUN <<ASDF1
     git clone https://github.com/asdf-vm/asdf.git ${HOME}/.asdf --branch v0.14.0
     echo ". $HOME/.asdf/asdf.sh" >> ${HOME}/.bashrc
     echo ". $HOME/.asdf/completions/asdf.bash" >> ${HOME}/.bashrc
+ASDF1
+RUN <<ASDF2    
     . $HOME/.asdf/asdf.sh
     asdf plugin-add aws-vault https://github.com/karancode/asdf-aws-vault.git
     asdf install aws-vault
@@ -31,7 +33,7 @@ RUN <<ASDF
     pnpm setup
     . ${HOME}/.bashrc
     pnpm install -g serverless
-ASDF
+ASDF2
 
 RUN <<SERVERLESS
     . ${HOME}/.bashrc
